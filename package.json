@@ -1,0 +1,21 @@
+{
+  "name": "extrovert",
+  "version": "0.0.0",
+  "description": "WIP",
+  "main": "index.js",
+  "author": "Valeri Karpov <val@karpov.io>",
+  "dependencies": {
+    "path-to-regexp": "6.2.0"
+  },
+  "devDependencies": {
+    "axios": "0.21.1",
+    "mocha": "8.x"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha test/*.test.js"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  }
+}

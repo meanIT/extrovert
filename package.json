@@ -1,14 +1,16 @@
 {
   "name": "extrovert",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "WIP",
   "main": "index.js",
   "author": "Valeri Karpov <val@karpov.io>",
   "dependencies": {
-    "path-to-regexp": "6.2.0"
+    "debug": "4.x"
   },
   "devDependencies": {
+    "@masteringjs/eslint-config": "0.0.1",
     "axios": "0.21.1",
+    "eslint": "8.15.0",
     "mocha": "8.x"
   },
   "scripts": {

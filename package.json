@@ -4,18 +4,20 @@
   "description": "WIP",
   "main": "index.js",
   "author": "Valeri Karpov <val@karpov.io>",
-  "dependencies": {
-    "debug": "4.x"
-  },
   "devDependencies": {
     "@masteringjs/eslint-config": "0.0.1",
     "axios": "0.21.1",
     "eslint": "8.15.0",
-    "mocha": "8.x"
+    "mocha": "8.x",
+    "mongoose": "6.x",
+    "sinon": "14.0.0"
+  },
+  "peerDependencies": {
+    "mongoose": "6.x"
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "mocha test/*.test.js"
+    "test": "env NODE_ENV=test mocha test/*.test.js"
   },
   "engines": {
     "node": ">= 10.0.0"

@@ -10,7 +10,7 @@ module.exports = function toRoute(fn) {
   return function routeWrapper(req, res, next) {
     let initialPromise = Promise.resolve();
     let task = null;
-    if (db != null) {
+    if (db.db != null) {
       const { _Task } = db.db.models;
       initialPromise = initialPromise.
         then(() => _Task.create({

@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('assert');
-const { after, before, beforeEach } = require('mocha');
+const { after, before, beforeEach, describe, it } = require('mocha');
 const extrovert = require('../');
 const mongoose = require('mongoose');
 const sinon = require('sinon');
@@ -21,11 +21,11 @@ describe('toRoute', function() {
   });
 
   it('handles tasks', async function() {
-    let functionCallParams = [];
+    const functionCallParams = [];
     async function test(params) {
       functionCallParams.push(params);
       return { answer: 42 };
-    };
+    }
 
     const route = extrovert.toRoute(test);
 
@@ -52,7 +52,7 @@ describe('toRoute', function() {
   it('handles task errors', async function() {
     async function test() {
       throw new Error('Oops!');
-    };
+    }
 
     const route = extrovert.toRoute(test);
 

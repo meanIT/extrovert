@@ -56,7 +56,7 @@ describe('toRoute', function() {
 
     const route = extrovert.toRoute(test);
 
-    const res = { json: sinon.stub() };
+    const res = { json: sinon.stub(), status: sinon.stub() };
     const result = await new Promise((resolve, reject) => {
       route({ headers: {}, body: { hello: 'world' } }, res, function(err) {
         if (err != null) {
@@ -67,6 +67,7 @@ describe('toRoute', function() {
     }).then(() => null, err => err);
 
     assert.equal(result.message, 'Oops!');
+    assert.equal(res.status.getCall(0).args[0], 500);
     assert.equal(res.json.getCall(0).args[0].message, 'Oops!');
 
     const tasks = await mongoose.model('_Task').find();

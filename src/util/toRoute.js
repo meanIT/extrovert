@@ -38,7 +38,14 @@ module.exports = function toRoute(fn) {
           console.log(`Error in ${req.method} ${req.url}`);
           console.log(err.stack);
         }
-        res.status(err.status == null ? 500 : err.status);
+        let status = err.status;
+        if (err != null && err.status == null && err._isArchetypeError) {
+          status = 400;
+        }
+        if (status == null) {
+          status = 500;
+        }
+        res.status(status);
 
         const result = { message: err.message };
         if (!isProduction) {

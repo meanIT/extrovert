@@ -24,7 +24,11 @@ module.exports = function toRoute(fn) {
     initialPromise.
       then(() => fn(combineRequestParams(req, task), req, res)).
       then(data => {
-        res.json(data);
+        if (typeof data === 'string') {
+          res.send(data);
+        } else {
+          res.json(data);
+        }
 
         if (task != null) {
           task.status = 'success';

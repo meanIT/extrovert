@@ -13,4 +13,4 @@ function applySpec(obj) {
   }
 
   return ret;
-};
+}

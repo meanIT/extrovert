@@ -24,7 +24,11 @@ module.exports = function toRoute(fn) {
     initialPromise.
       then(() => fn(combineRequestParams(req, task), req, res)).
       then(data => {
-        if (typeof data === 'string') {
+        if (res.headersSent) {
+          if (data != null) {
+            throw new Error('Return value must be nullish if headers sent');
+          }
+        } else if (typeof data === 'string') {
           res.send(data);
         } else {
           res.json(data);

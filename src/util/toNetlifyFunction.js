@@ -24,9 +24,11 @@ module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory) {
         req._internals
       );
 
-      console.log(params);
+      console.log('Calling', fn.name);
+      console.log('Params', params);
       
       const res = await fn(params);
+      console.log('Result', res);
       return {
         statusCode: 200,
         body: JSON.stringify(res)

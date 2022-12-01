@@ -2,7 +2,7 @@
 
 const applySpec = require('./applySpec');
 
-module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory) {
+module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory, name) {
   const handler = async(event) => {
     let services = null;
     let fn = factoryOrFn;
@@ -24,11 +24,11 @@ module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory) {
         req._internals
       );
 
-      console.log('Calling', fn.name);
-      console.log('Params', params);
+      console.log(new Date(), 'Calling', name || fn.name);
+      console.log(new Date(), 'Params', params);
       
       const res = await fn(params);
-      console.log('Result', res);
+      console.log(new Date(), 'Result', res);
       return {
         statusCode: 200,
         body: JSON.stringify(res)

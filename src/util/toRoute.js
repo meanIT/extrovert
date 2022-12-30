@@ -74,8 +74,7 @@ module.exports = function toRoute(fn) {
 };
 
 function combineRequestParams(req, task) {
-  return Object.assign({}, req.query, req.body, req.params, {
-    authorization: req.headers.authorization,
+  return Object.assign({}, req.headers, req.query, req.body, req.params, {
     task
   }, { ...req._internals }); // `_internals` are properties set trusted middleware
 }

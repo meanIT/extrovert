@@ -74,7 +74,9 @@ module.exports = function toRoute(fn) {
 };
 
 function combineRequestParams(req, task) {
-  return Object.assign({}, req.headers, req.query, req.body, req.params, {
+  const headersToPass = Object.keys(req.headers || {}).filter(header => header === 'authorization' || header.startsWith('param-'));
+  const headers = headersToPass.reduce((obj, key) => ({ ...obj, [key.replace(/^param-/, '')]: req.headers[key] }), {});
+  return Object.assign({}, headers, req.query, req.body, req.params, {
     task
   }, { ...req._internals }); // `_internals` are properties set trusted middleware
 }

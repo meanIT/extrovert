@@ -2,6 +2,7 @@
 
 const applySpec = require('../src/util/applySpec');
 const assert = require('assert');
+const { describe, it } = require('mocha');
 
 describe('applySpec', function() {
   it('applies function properties to result', function() {

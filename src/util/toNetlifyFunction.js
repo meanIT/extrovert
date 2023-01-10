@@ -16,8 +16,12 @@ module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory, name) 
 
       const req = { headers: event.headers, _internals: {} };
 
+      const headersToPass = Object.keys(req.headers || {}).filter(header => header === 'authorization' || header.startsWith('param-'));
+      const headers = headersToPass.reduce((obj, key) => ({ ...obj, [key.replace(/^param-/, '')]: req.headers[key] }), {});
+
       Object.assign(
         params,
+        headers,
         event.queryStringParameters,
         JSON.parse(event.body || '{}'),
         { authorization: event.headers.authorization },

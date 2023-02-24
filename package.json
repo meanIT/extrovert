@@ -15,7 +15,7 @@
   },
   "peerDependencies": {
     "express": "4.x",
-    "mongoose": ">= 6.0.0"
+    "mongoose": "6.x || 7.x"
   },
   "scripts": {
     "lint": "eslint .",

@@ -4,7 +4,6 @@ const db = require('../db');
 
 const env = process.env.NODE_ENV;
 const isProduction = env === 'production';
-const isTest = env === 'test';
 
 module.exports = function toRoute(fn) {
   return function routeWrapper(req, res, next) {
@@ -42,10 +41,6 @@ module.exports = function toRoute(fn) {
       }).
       then(() => next()).
       catch(err => {
-        if (!isTest) {
-          console.log(`Error in ${req.method} ${req.url}`);
-          console.log(err.stack);
-        }
         let status = err.status;
         if (err != null && err.status == null && err._isArchetypeError) {
           status = 400;

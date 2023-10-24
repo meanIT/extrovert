@@ -1,6 +1,6 @@
 {
   "name": "extrovert",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "WIP",
   "main": "index.js",
   "author": "Valeri Karpov <val@karpov.io>",
@@ -15,7 +15,7 @@
   },
   "peerDependencies": {
     "express": "4.x",
-    "mongoose": "6.x || 7.x || 7.0.0-rc0"
+    "mongoose": "6.x || 7.x || 8.0.0-rc0 || 8.x"
   },
   "scripts": {
     "lint": "eslint .",

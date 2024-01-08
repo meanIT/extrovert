@@ -44,7 +44,7 @@ module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory, name) 
       }
       return {
         statusCode: 500,
-        body: JSON.stringify({ message: error.message })
+        body: JSON.stringify({ message: error.message, extra: error.extra })
       };
     }
   };

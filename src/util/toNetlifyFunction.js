@@ -5,6 +5,17 @@ const applySpec = require('./applySpec');
 module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory, name) {
   const handler = async(event) => {
     let services = null;
+
+    if (event.httpMethod === 'OPTIONS') {
+      return {
+        statusCode: 200,
+        headers: {
+          'access-control-allow-origin': '*'
+        },
+        body: ''
+      };
+    }
+
     let fn = factoryOrFn;
     if (servicesFactory != null) {
       services = await servicesFactory();
@@ -35,6 +46,9 @@ module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory, name) 
       console.log(new Date(), 'Result', res);
       return {
         statusCode: 200,
+        headers: {
+          'access-control-allow-origin': '*'
+        },
         body: JSON.stringify(res)
       };
     } catch (error) {
@@ -44,6 +58,9 @@ module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory, name) 
       }
       return {
         statusCode: 500,
+        headers: {
+          'access-control-allow-origin': '*'
+        },
         body: JSON.stringify({ message: error.message, extra: error.extra })
       };
     }

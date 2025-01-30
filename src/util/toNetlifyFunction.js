@@ -10,7 +10,8 @@ module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory, name) 
       return {
         statusCode: 200,
         headers: {
-          'access-control-allow-origin': '*'
+          'access-control-allow-origin': '*',
+          'Access-Control-Allow-Headers': '*'
         },
         body: ''
       };
@@ -59,7 +60,8 @@ module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory, name) 
       return {
         statusCode: 500,
         headers: {
-          'access-control-allow-origin': '*'
+          'access-control-allow-origin': '*',
+          'Access-Control-Allow-Headers': '*'
         },
         body: JSON.stringify({ message: error.message, extra: error.extra })
       };

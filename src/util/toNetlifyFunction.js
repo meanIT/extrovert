@@ -43,7 +43,7 @@ module.exports = function toNetlifyFunction(factoryOrFn, servicesFactory, name) 
       console.log(new Date(), 'Calling', name || fn.name);
       console.log(new Date(), 'Params', params);
       
-      const res = await fn(params);
+      const res = await fn(params, event);
       console.log(new Date(), 'Result', res);
       return {
         statusCode: 200,

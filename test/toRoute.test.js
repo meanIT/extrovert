@@ -66,7 +66,10 @@ describe('toRoute', function() {
     };
     const res = {
       send: sinon.spy(),
+      write: sinon.spy(),
+      end: sinon.spy(),
       json: sinon.spy(),
+      getHeader: sinon.stub().returns(''),
       status: sinon.spy(),
       headersSent: true
     };
@@ -77,8 +80,8 @@ describe('toRoute', function() {
 
     await wrapped(req, res, next);
     assert(res.status.calledOnceWith(500));
-    assert(res.json.calledOnce);
-    const jsonArg = res.json.firstCall.args[0];
+    assert(res.write.calledOnce);
+    const jsonArg = JSON.parse(res.write.firstCall.args[0]);
     assert.strictEqual(jsonArg.message, 'Return value must be nullish if headers sent');
   });
 
